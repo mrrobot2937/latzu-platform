@@ -143,16 +143,19 @@ export default function OnboardingPage() {
         console.error("Failed to save onboarding data to backend");
       }
 
-      // Save to local store
+      // Save to local store (this will prevent redirect loop)
       setProfileType(data.profileType);
 
+      // Small delay to ensure store is updated before redirect
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       // Redirect to dashboard
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.error("Onboarding error:", error);
       // Save locally anyway
       setProfileType(data.profileType);
-      router.push("/");
+      router.push("/dashboard");
     } finally {
       setIsSubmitting(false);
     }

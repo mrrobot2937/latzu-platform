@@ -48,12 +48,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     };
   }, [session, isGuest, guestId, setProfileType, setTenantId]);
 
+  // Get local profileType from store (updated after onboarding)
+  const localProfileType = useUserStore((state) => state.profileType);
+
   // Check for onboarding (only for authenticated users, not guests)
+  // Skip if localProfileType is set (onboarding completed but session not refreshed)
   useEffect(() => {
-    if (session?.user?.needsOnboarding && !isGuest) {
+    if (session?.user?.needsOnboarding && !isGuest && !localProfileType) {
       router.push("/onboarding");
     }
-  }, [session, isGuest, router]);
+  }, [session, isGuest, router, localProfileType]);
 
   // Loading state - only show when authenticating (not for guests)
   if (status === "loading" && !isGuest) {
