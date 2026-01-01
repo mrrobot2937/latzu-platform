@@ -39,7 +39,7 @@ declare module 'next-auth/jwt' {
   }
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://latzuplatform.vercel.app';
 
 // Sync user to backend Neo4j
 async function syncUserToBackend(

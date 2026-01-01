@@ -1,7 +1,8 @@
 // API client for Latzu Platform
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const AI_URL = process.env.NEXT_PUBLIC_AI_URL || "http://localhost:8001";
+// Backend URLs - In production, both API and AI are served from the same backend
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://latzuplatform.vercel.app";
+const AI_URL = process.env.NEXT_PUBLIC_AI_URL || "https://latzuplatform.vercel.app";
 
 type RequestOptions = {
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
